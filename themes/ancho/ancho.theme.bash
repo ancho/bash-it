@@ -17,8 +17,8 @@ function prompt(){
   prompt_home="${prompt_obracket}$green\h${prompt_cbracket}"
   prompt_user="${prompt_obracket}${user_color}\u${prompt_cbracket}"
   prompt_cpwd="${prompt_obracket} $purple\w ${prompt_cbracket}"
-  prompt_prefix="${line_color}┌─${normal}"
-  prompt_iline="${line_color}└─▪ ${normal}"
+  prompt_prefix="${line_color}╔${normal}"
+  prompt_iline="${line_color}╚✾ ${normal}"
   prompt_scm="$(scm_prompt_info)"
 
   prompt_scmline
@@ -44,7 +44,7 @@ function prompt_scmline(){
   scm
   scm_prompt_char
   if [ -n "$prompt_scm" ]; then
-    prompt_scm_line_pre=${prompt_obracket}${SCM_CHAR}${prompt_cbracket}
+    prompt_scm_line_pre="$line_color╠${prompt_obracket}${SCM_CHAR}${prompt_cbracket}"
     prompt_scm_line="\n${prompt_scm_line_pre}${prompt_scm}"
   else
     prompt_scm_line=""
