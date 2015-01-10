@@ -1,9 +1,5 @@
 function prompt(){
 
-
-  prompt_obracket="${bold_cyan}[${normal}"
-  prompt_cbracket="${bold_cyan}]${normal}"
-
   SCM_THEME_PROMPT_DIRTY=" ${red}✗${normal}"
   SCM_THEME_PROMPT_CLEAN=" ${bold_green}✓${normal}"
   SCM_THEME_PROMPT_PREFIX="${prompt_obracket}"
@@ -14,16 +10,35 @@ function prompt(){
   SCM_GIT_UNSTAGED_CHAR="${yellow}U:${normal}"
   SCM_GIT_STAGED_CHAR="${green}S:${normal}"
 
+  determine_user_color
+
+  prompt_obracket="${bracket_color}[${normal}"
+  prompt_cbracket="${bracket_color}]${normal}"
   prompt_home="${prompt_obracket}$green\h${prompt_cbracket}"
-  prompt_user="${prompt_obracket}$bold_green\u${prompt_cbracket}"
+  prompt_user="${prompt_obracket}${user_color}\u${prompt_cbracket}"
   prompt_cpwd="${prompt_obracket} $purple\w ${prompt_cbracket}"
-  prompt_iline="└─▪ "
+  prompt_prefix="${line_color}┌─${normal}"
+  prompt_iline="${line_color}└─▪ ${normal}"
   prompt_scm="$(scm_prompt_info)"
 
   prompt_scmline
 
-  PS1="┌─${prompt_user}${prompt_home}${prompt_cpwd}${prompt_scm_line}\n$prompt_iline"
+  PS1="${prompt_prefix}${prompt_user}${prompt_home}${prompt_cpwd}${prompt_scm_line}\n$prompt_iline"
 }
+
+function determine_user_color(){
+
+  if [ "$USER" = "root" ]; then
+    user_color=${bold_red}
+    bracket_color=${bold_yellow}
+    line_color=${yellow}
+  else
+    user_color=${bold_green}
+    bracket_color=${bold_cyan}
+    line_color=${cyan}
+  fi
+}
+
 
 function prompt_scmline(){
   scm
