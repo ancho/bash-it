@@ -11,14 +11,14 @@ function prompt(){
   SCM_GIT_STAGED_CHAR="${green}S:${normal}"
 
   determine_user_color
-
+  
   prompt_obracket="${bracket_color}[${normal}"
   prompt_cbracket="${bracket_color}]${normal}"
   prompt_home="${prompt_obracket}$green\h${prompt_cbracket}"
   prompt_user="${prompt_obracket}${user_color}\u${prompt_cbracket}"
   prompt_cpwd="${prompt_obracket} $purple\w ${prompt_cbracket}"
-  prompt_prefix="${line_color}╔${normal}"
-  prompt_iline="${line_color}╚✾ ${normal}"
+  prompt_prefix="${line_color}┌${normal}"
+  prompt_iline="${line_color}└✪ ${normal}"
   prompt_scm="$(scm_prompt_info)"
 
   prompt_scmline
@@ -31,11 +31,11 @@ function determine_user_color(){
   if [ "$USER" = "root" ]; then
     user_color=${bold_red}
     bracket_color=${bold_yellow}
-    line_color=${yellow}
+    line_color=${bold_yellow}
   else
     user_color=${bold_green}
     bracket_color=${bold_cyan}
-    line_color=${cyan}
+    line_color=${bold_cyan}
   fi
 }
 
@@ -44,7 +44,7 @@ function prompt_scmline(){
   scm
   scm_prompt_char
   if [ -n "$prompt_scm" ]; then
-    prompt_scm_line_pre="$line_color╠${prompt_obracket}${SCM_CHAR}${prompt_cbracket}"
+    prompt_scm_line_pre="$line_color├${prompt_obracket}${SCM_CHAR}${prompt_cbracket}"
     prompt_scm_line="\n${prompt_scm_line_pre}${prompt_scm}"
   else
     prompt_scm_line=""
