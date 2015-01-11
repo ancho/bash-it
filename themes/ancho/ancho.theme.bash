@@ -9,7 +9,9 @@ function prompt(){
   SCM_GIT_UNTRACKED_CHAR="${red}?:${normal}"
   SCM_GIT_UNSTAGED_CHAR="${yellow}U:${normal}"
   SCM_GIT_STAGED_CHAR="${green}S:${normal}"
-
+  SCM_GIT_AHEAD_CHAR="${bold_green}↑${normal}"
+  SCM_GIT_BEHIND_CHAR="${bold_red}↓${normal}"
+  
   determine_user_color
   
   prompt_obracket="${bracket_color}[${normal}"
